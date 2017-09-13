@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzh.weather.dao.WeatherMapper">
+	<!-- 
+		CRUD操作
+	 -->
+	 <insert id="addWeather" parameterType="com.xzh.weather.entity.Weather" useGeneratedKeys="true" keyProperty="id">
+	 	insert into weather(city,HTemp,LTemp,rain,wind,humidity,date) values(#{city}, #{HTemp},#{LTemp},#{rain},#{wind},#{humidity},#{date})
+	 </insert>
+	 
+	 <delete id="deleteWeather" parameterType="int">
+	 	delete from weather where id=#{id}
+	 </delete>
+	 
+	 <update id="updateWeather" parameterType="Weather">
+	 	update weather set city=#{city},HTemp=#{HTemp},LTemp=#{LTemp},rain=#{LTemp},wind=#{wind},humidity={humidity},date=#{date} where id=#{id}
+	 </update>
+	 
+	 <select id="getWeather" parameterType="int" resultType="com.xzh.weather.entity.Weather">
+	 	select * from weather where id=#{id}
+	 </select>
+	 
+	 <select id="getWeatherByDate" parameterType="String" resultType="com.xzh.weather.entity.Weather">
+	 	select * from weather where date=#{date}
+	 </select>
+	 
+	 <select id="getWeatherByCity" parameterType="String" resultType="com.xzh.weather.entity.Weather">
+	 	select * from weather where city=#{city}
+	 </select>
+	
+	 <select id="showWeather"  resultType="com.xzh.weather.entity.Weather">
+	 	select * from weather
+	 </select>
+	 
+	 <select id="showScrapy"  resultType="com.xzh.weather.entity.Scrapy">
+	 	select * from scrapy
+	 </select>
+	 
+	 <select id="showTodayStatus"  resultType="com.xzh.weather.entity.Scrapy">
+	 	select * from scrapy where cityDate like '太原%' and date = curdate()
+	 </select>
+	  
+	 <select id="showTodayWeather"  resultType="com.xzh.weather.entity.Scrapy">
+	 	select * from todayWeather
+	 </select>
+</mapper>

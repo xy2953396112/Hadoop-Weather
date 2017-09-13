@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzh.weather.dao.UserMapper">
+	<!-- 
+		CRUD操作
+	 -->
+	 <insert id="addUser" parameterType="com.xzh.weather.entity.User" useGeneratedKeys="true" keyProperty="id">
+	 	insert into users(username,password,sex,role,phone,address,lastLoginTime) values(#{username}, #{password},#{sex},#{role},#{phone},#{address},#{lastLoginTime})
+	 </insert>
+	 
+	 <insert id="addAdmin" parameterType="com.xzh.weather.entity.User" useGeneratedKeys="true" keyProperty="id">
+	 	insert into users(username,password,role,lastLoginTime) values(#{username}, #{password},#{role},#{lastLoginTime})
+	 </insert>
+	 
+	 <delete id="deleteUser" parameterType="int">
+	 	delete from users where id=#{id}
+	 </delete>
+	 
+	 <update id="updateUser" parameterType="User">
+	 	update users set password=#{password},sex=#{sex},phone=#{phone},address=#{address} where username=#{username}
+	 </update>
+	 
+	 <update id="updateAdmin" parameterType="User">
+	 	update users set password=#{password} where username=#{username}
+	 </update>
+	 
+	 <select id="getUser" parameterType="int" resultType="User">
+	 	select * from users where id=#{id}
+	 </select>
+	 
+	 <select id="getUserByUsername" parameterType="String" resultType="User">
+	 	select * from users where username=#{username}
+	 </select>
+	
+	 <select id="login"  parameterType="com.xzh.weather.entity.User" resultType="com.xzh.weather.entity.User">
+	 	select username,password,role from users where username=#{username} and password=#{password} and role=#{role}
+	 </select>
+	
+	 <select id="getAllUsers"  resultType="com.xzh.weather.entity.User">
+	 	select * from users
+	 </select>
+	 
+	 <select id="getUsername"  resultType="String">
+	 	select username from users where username=#{username}
+	 </select>
+	 
+	 
+</mapper>

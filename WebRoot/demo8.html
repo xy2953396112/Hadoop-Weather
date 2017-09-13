@@ -1,0 +1,64 @@
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>�ޱ����ĵ�</title>
+<meta charset=UTF-8>
+</head>
+
+<body>
+<div id="main" style="height:400px"></div>
+<script src="js/echarts.js"></script>
+ <script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('main'));
+    myChart.title = '环形图';
+
+option = {
+    tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b}: {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        x: 'left',
+        data:['杭州','太原','北京','上海','宁波']
+    },
+    series: [
+        {
+            name:'访问来源',
+            type:'pie',
+            radius: ['50%', '70%'],
+            avoidLabelOverlap: false,
+            label: {
+                normal: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    show: true,
+                    textStyle: {
+                        fontSize: '30',
+                        fontWeight: 'bold'
+                    }
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data:[
+                {value:159, name:'北京'},
+                {value:213, name:'太原'},
+                {value:237, name:'上海'},
+                {value:256, name:'宁波告'},
+                {value:315, name:'杭州'}
+            ]
+        }
+    ]
+};
+
+        myChart.setOption(option); 
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzh.weather.dao.HiveMapper">
+
+	 <select id="showCityMonth" resultType="com.xzh.weather.entity.CityMonth">
+	 	select * from city_month 
+	 </select>
+	 <select id="showTy_2014_day" resultType="com.xzh.weather.entity.Ty_2014_day">
+	 	select * from ty_2014_day 
+	 </select>
+	 
+	 <select id="showTy_2014_year" resultType="com.xzh.weather.entity.Ty_2014_year">
+	 	select max(hTemp) as max_hTemp,min(lTemp) as min_lTemp,avg(hTemp) as avg_hTemp,avg(lTemp) as avg_lTemp from ty_2014_day ;
+	 </select>
+	 <select id="showTy_2015_year" resultType="com.xzh.weather.entity.Ty_2014_year">
+	 	select max(hTemp) as max_hTemp,min(lTemp) as min_lTemp,avg(hTemp) as avg_hTemp,avg(lTemp) as avg_lTemp from ty_2015_day ;
+	 </select>
+	 <select id="showTy_2016_year" resultType="com.xzh.weather.entity.Ty_2014_year">
+	 	select max(hTemp) as max_hTemp,min(lTemp) as min_lTemp,avg(hTemp) as avg_hTemp,avg(lTemp) as avg_lTemp from ty_2016_day ;
+	 </select>
+	 
+	 <select id="showTy_2014_week" resultType="com.xzh.weather.entity.Ty_week">
+	 	select DATE_FORMAT(str_to_date(REPLACE(day,'/','-'), '%Y-%m-%d'),'%Y%u') weeks,max(hTemp) as max_hTemp,min(lTemp) as min_lTemp,avg(hTemp) as avg_hTemp,avg(lTemp) as avg_lTemp, avg((hTemp+lTemp))/2 as avg_hl from ty_2014_day group by weeks
+	 </select>
+	 
+	 <select id="showTy_2015_week" resultType="com.xzh.weather.entity.Ty_week">
+	 	select DATE_FORMAT(str_to_date(REPLACE(day,'/','-'), '%Y-%m-%d'),'%Y%u') weeks,max(hTemp) as max_hTemp,min(lTemp) as min_lTemp,avg(hTemp) as avg_hTemp,avg(lTemp) as avg_lTemp, avg((hTemp+lTemp))/2 as avg_hl from ty_2015_day group by weeks
+	 </select>
+	 <select id="showTy_2016_week" resultType="com.xzh.weather.entity.Ty_week">
+	 	select DATE_FORMAT(str_to_date(REPLACE(day,'/','-'), '%Y-%m-%d'),'%Y%u') weeks,max(hTemp) as max_hTemp,min(lTemp) as min_lTemp,avg(hTemp) as avg_hTemp,avg(lTemp) as avg_lTemp, avg((hTemp+lTemp))/2 as avg_hl from ty_2016_day group by weeks
+	 </select>
+	 
+	 <select id="showTy_2014_quarter" resultType="com.xzh.weather.entity.Ty_quarter">
+	 	select quarter(day) as quarter,max(hTemp) as max_hTemp,min(lTemp) as min_lTemp,avg(hTemp) as avg_hTemp,avg(lTemp) as avg_lTemp, avg((hTemp+lTemp))/2 as avg_hl from ty_2014_day group by quarter;
+	 </select>
+	 <select id="showTy_2015_quarter" resultType="com.xzh.weather.entity.Ty_quarter">
+	 	select quarter(day) as quarter,max(hTemp) as max_hTemp,min(lTemp) as min_lTemp,avg(hTemp) as avg_hTemp,avg(lTemp) as avg_lTemp, avg((hTemp+lTemp))/2 as avg_hl from ty_2015_day group by quarter;
+	 </select>
+	 <select id="showTy_2016_quarter" resultType="com.xzh.weather.entity.Ty_quarter">
+	 	select quarter(day) as quarter,max(hTemp) as max_hTemp,min(lTemp) as min_lTemp,avg(hTemp) as avg_hTemp,avg(lTemp) as avg_lTemp, avg((hTemp+lTemp))/2 as avg_hl from ty_2016_day group by quarter;
+	 </select>
+	 
+	 
+	 <select id="showTy_2015_day" resultType="com.xzh.weather.entity.Ty_2015_day">
+	 	select * from ty_2015_day 
+	 </select>
+	 <select id="showTy_2016_day" resultType="com.xzh.weather.entity.Ty_2016_day">
+	 	select * from ty_2016_day 
+	 </select>
+	  <select id="showTy_three" resultType="com.xzh.weather.entity.Ty_three">
+	 	select * from ty_three
+	 </select>
+	 <select id="showWeather_avg" resultType="com.xzh.weather.entity.Weather_avg">
+	 	select * from weather_avg
+	 </select>
+	 <select id="showWeather_day" resultType="com.xzh.weather.entity.Weather_day">
+	 	select * from weather_day
+	 </select>
+	 <select id="showWeather_max_min" resultType="com.xzh.weather.entity.Weather_max_min">
+	 	select * from weather_max_min
+	 </select>
+	 <select id="showWeather_year" resultType="com.xzh.weather.entity.Weather_year">
+	 	select * from weather_year
+	 </select>
+	 
+	
+</mapper>

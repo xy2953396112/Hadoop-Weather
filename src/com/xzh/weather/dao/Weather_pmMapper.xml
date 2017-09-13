@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xzh.weather.dao.Weather_pmMapper" >
+  <resultMap id="BaseResultMap" type="com.xzh.weather.entity.Weather_pm" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="aqi" property="aqi" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="pm2_5_24h" property="pm2524h" jdbcType="VARCHAR" />
+    <result column="position_name" property="positionName" jdbcType="VARCHAR" />
+    <result column="primary_pollutant" property="primaryPollutant" jdbcType="VARCHAR" />
+    <result column="quality" property="quality" jdbcType="VARCHAR" />
+    <result column="station_code" property="stationCode" jdbcType="VARCHAR" />
+    <result column="time_point" property="timePoint" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, aqi, area, pm2_5_24h, position_name, primary_pollutant, quality, station_code, 
+    time_point
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from weather_pm
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="select"   resultType="com.xzh.weather.entity.Weather_pm">
+    select 
+    <include refid="Base_Column_List" />
+    * from weather_pm
+    
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from weather_pm
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xzh.weather.entity.Weather_pm" >
+    insert into weather_pm (id, aqi, area, 
+      pm2_5_24h, position_name, primary_pollutant, 
+      quality, station_code, time_point
+      )
+    values (#{id,jdbcType=INTEGER}, #{aqi,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{pm2524h,jdbcType=VARCHAR}, #{positionName,jdbcType=VARCHAR}, #{primaryPollutant,jdbcType=VARCHAR}, 
+      #{quality,jdbcType=VARCHAR}, #{stationCode,jdbcType=VARCHAR}, #{timePoint,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xzh.weather.entity.Weather_pm" >
+    insert into weather_pm
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="aqi != null" >
+        aqi,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="pm2524h != null" >
+        pm2_5_24h,
+      </if>
+      <if test="positionName != null" >
+        position_name,
+      </if>
+      <if test="primaryPollutant != null" >
+        primary_pollutant,
+      </if>
+      <if test="quality != null" >
+        quality,
+      </if>
+      <if test="stationCode != null" >
+        station_code,
+      </if>
+      <if test="timePoint != null" >
+        time_point,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="aqi != null" >
+        #{aqi,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="pm2524h != null" >
+        #{pm2524h,jdbcType=VARCHAR},
+      </if>
+      <if test="positionName != null" >
+        #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryPollutant != null" >
+        #{primaryPollutant,jdbcType=VARCHAR},
+      </if>
+      <if test="quality != null" >
+        #{quality,jdbcType=VARCHAR},
+      </if>
+      <if test="stationCode != null" >
+        #{stationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="timePoint != null" >
+        #{timePoint,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzh.weather.entity.Weather_pm" >
+    update weather_pm
+    <set >
+      <if test="aqi != null" >
+        aqi = #{aqi,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="pm2524h != null" >
+        pm2_5_24h = #{pm2524h,jdbcType=VARCHAR},
+      </if>
+      <if test="positionName != null" >
+        position_name = #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryPollutant != null" >
+        primary_pollutant = #{primaryPollutant,jdbcType=VARCHAR},
+      </if>
+      <if test="quality != null" >
+        quality = #{quality,jdbcType=VARCHAR},
+      </if>
+      <if test="stationCode != null" >
+        station_code = #{stationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="timePoint != null" >
+        time_point = #{timePoint,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xzh.weather.entity.Weather_pm" >
+    update weather_pm
+    set aqi = #{aqi,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      pm2_5_24h = #{pm2524h,jdbcType=VARCHAR},
+      position_name = #{positionName,jdbcType=VARCHAR},
+      primary_pollutant = #{primaryPollutant,jdbcType=VARCHAR},
+      quality = #{quality,jdbcType=VARCHAR},
+      station_code = #{stationCode,jdbcType=VARCHAR},
+      time_point = #{timePoint,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
